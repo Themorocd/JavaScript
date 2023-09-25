@@ -1,7 +1,7 @@
 let nombre = prompt("Escribe tu nombre");
 let edad = prompt("Que edad tienes?");
 
-let diastierra = 360;
+let diastierra = 365;
 let totaltierra = diastierra*edad;
 let jubi = 65;
 let totierra = diastierra*jubi;
