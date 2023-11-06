@@ -1,7 +1,7 @@
 let ventana;
 
 function abrirventanas(){
-    ventana = window.open("","width=200,height=100");
+    ventana = window.open("","","width=800,height=600");
     
 }
 
