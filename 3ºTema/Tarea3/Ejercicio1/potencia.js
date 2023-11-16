@@ -1,15 +1,27 @@
+let base;
+let expo;
+while (true) {
 
+     base = parseInt(prompt("Introduce una base"));
 
-    let base = parseInt(prompt("Introduce una base"));
-    let expo = parseInt(prompt("Introduce el exponente"));
-
-    if(isNaN(base)){
-        alert("no es un numero");
+    if (isNaN(base)) {
+        alert("Introduce un numero valido para la base");
+    } else {
+        break;
     }
-    if(isNaN(expo)){
-        alert("No es un numero");
+
+}
+
+while (true) {
+     expo = parseInt(prompt("Introduce el exponente"));
+
+    if (isNaN(expo)) {
+        alert("Introduce un numero valido para el exponente")
+    } else {
+        break;
     }
+}
 
-    let resultado = base ** expo;
+let resultado = Math.pow(base,expo);
 
-    alert(resultado);
+alert(resultado);
