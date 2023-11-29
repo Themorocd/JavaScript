@@ -90,7 +90,7 @@ function diputados(nombre, apellidos, dni, edad, partido) {
     };
 
     this.setEdad = function (edad) {
-        if (edad > 0 && edad <= 200) {
+        if (edad > 17 && edad <= 65) {
             this.edad = edad;
         } else {
             this.edad = "Eres muy joven o muy viejo";
