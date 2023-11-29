@@ -1,4 +1,8 @@
-
+/*
+Cree un script que defina un objeto llamado coches. Este objeto debe presentar las
+propiedades código , nombre y precio, además del método imprimeDatos , el cual escribe
+por pantalla los valores de sus propiedades.
+*/
 function coche(codigo, nombre, precio){
     //propiedades del coche
     this.codigo=codigo;
