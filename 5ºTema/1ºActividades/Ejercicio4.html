@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="Ejercicio4.js"></script>
+
+        <h1>Trabajamos con this</h1>
+
+        <form id="formulario">
+
+            <p>
+
+                <label for="nombre">Nombre:</label>
+
+                <input type="text" name="nombre" id="nombre" value="Constantino" onclick="identificar(this)">
+                
+                <label for="apellidos"> Apellidos</label>
+
+                <input type="text" name="apellidos" id="apellidos" value="Veiga perez" onclick="identificar(this)">
+
+                <label for="edad">Edad:</label>
+
+                <input type="password" name="edad" id="edad" value="55" onclick="identificar(this)">
+
+                <label for="pais">Pais:</label>
+
+                España <input type="radio" name="pais"  id="pais1" value="ES" onclick="identificar(this)">
+
+                Francia <input type="radio" name="pais" id="pais2" value="FR" onclick="identificar(this)">
+
+            </p>
+            
+            haga click en cada uno del os campos para ver mas informacion
+
+        </form>
+</body>
+</html>
