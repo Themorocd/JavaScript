@@ -45,6 +45,7 @@ window.onload = function() {
         }
         return false;
       }
+      console.log('nombre correcto');
       return true;
     }
 
@@ -62,17 +63,19 @@ window.onload = function() {
         }
 
         let numero = dni.substring(0,10).replace(/\D/g, '');
-        let letra = dni.charAt(10).toUpperCase();
+        let letra = dni.charAt(11).toUpperCase();
 
-        let letrasvalidas = 'TRWAGMYFPDXBNJZSQVHLCKE';
+        let letrasvalidas = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
 
-        let calcularletras = letrasvalidas.charAt(numero%24);
+        let calcularletras = numero%23;
+       
 
-        if(letra !== calcularletras){
+        if(letrasvalidas[calcularletras] != letra){
             erroresDiv.innerText = 'Letra del DNI no valida';
             dniInput.focus();
             return false;
         }
+      console.log("dni correcto");
       return true;
     }
 
@@ -85,10 +88,13 @@ window.onload = function() {
       if (!patrontelefono.test(telefono)) {
         erroresDiv.innerText = 'Formato de Telefono incorrecto.';
         telefonoInput.focus();
+        console.log('telefono no valido');
         return false;
       }
+      console.log('telefono valido');
       return true;
     }
+
     // Función para validar E-mail usando una expresión regular
     function ValidarEmail() {
         let email = emailInput.value.trim();
@@ -97,25 +103,39 @@ window.onload = function() {
       if (!patronemail.test(email)) {
         erroresDiv.innerText = 'Formato de Email incorrecto.';
         emailInput.focus();
+        console.log('email no valido');
         return false;
       }
+      console.log('email valido');
       return true;
     }
-    function ValidarMarcayModelo() {
+    function ValidarMarca() {
         let marca = marcaInput.value.trim();
-        let modelo = modeloInput.value.trim();
+       
         let patronMarcayModelo = /^[\w.]+$/;
         
       if (!patronMarcayModelo.test(marca)) {
         erroresDiv.innerText = 'Formato de Marca incorrecto.';
         marcaInput.focus();
+        console.log('marca no valido');
         return false;
+        
       }
+      console.log('marca  valido');
+      return true;
+    }
+    function ValidarModelo(){
+
+      let modelo = modeloInput.value.trim();
+      let patronMarcayModelo = /^[\w.]+$/;
+
       if(!patronMarcayModelo.test(modelo)){
         erroresDiv.innerText = 'Formato de Modelo incorrecto';
         modeloInput.focus();
+        console.log('modelo no valido');
         return false;
       }
+      console.log('modelo valido');
       return true;
     }
 
@@ -127,8 +147,11 @@ window.onload = function() {
       if (!patronMatricula.test(matricula)) {
         erroresDiv.innerText = 'Formato de matrícula incorrecto.';
         matriculaInput.focus();
+        console.log('matricula no valido');
         return false;
+        
       }
+      console.log('matricula  valido');
       return true;
     }
 
@@ -140,60 +163,59 @@ window.onload = function() {
       if (!patronFecha.test(fecha)) {
         erroresDiv.innerText = 'Formato de Fecha incorrecto.';
         fechaInput.focus();
+        console.log('fecha no valido');
         return false;
+        
       }
+      console.log('fecha valido');
       return true;
     }
     function ValidarHora() {
         let hora = horaInput.value.trim();
-        let patronHora = /^([01]\d|2[0-3]):([0-5]\d)$/;
+        let patronHora = /^(10|11|12|13|14|15|16|17):[0-5][0-9]$/;
 
       if (!patronHora.test(hora)) {
         erroresDiv.innerText = 'Formato de Hora incorrecto.';
         horaInput.focus();
+        console.log('hora no valido');
         return false;
       }
+      console.log('hora  valido');
       return true;
     }
 
-    function ValidarEntidad(){
-
-        let entidad = entidadInput.value;
-
-        if(entidad === ""){
-            erroresDiv.innerText = 'Seleccione una entidad';
-            entidadInput.focus();
-            return false;
-        }
-        return true;
-    }
+    
 
     function validarIBAN() {
-        let entidad = entidadInput.value;
-        let iban = ibanInput.value.trim();
-        let patroniban;
-      
-        switch (entidad) {
-          case "2100": // CAIXABANK
-          patroniban = /^ES2100\d{20}$/;
-            break;
-          case "0049": // BANCO SANTANDER
-          patroniban = /^ES0049\d{20}$/;
-            break;
-          case "2038": // BANKIA
-          patroniban = /^ES2038\d{20}$/;
-            break;
-          default:
-            return false;
-        }
-
-        if(!patroniban.test(iban)){
-            erroresDiv.innerText='Formato IBAN erroneo';
-            ibanInput.focus();
-            return false;
-        }
-      
-        return true;
+      let entidad = entidadInput.value; // Obtener el valor del campo entidad
+      let iban = ibanInput.value.trim();
+      let patroniban;
+    
+      switch (entidad) {
+        case "2100": // CAIXABANK
+          patroniban = /^ES702100\d{16}$/;
+          break;
+        case "0049": // BANCO SANTANDER
+          patroniban = /^ES700049\d{16}$/;
+          break;
+        case "2038": // BANKIA
+          patroniban = /^ES702038\d{16}$/;
+          break;
+        default:
+          erroresDiv.innerText = 'Entidad bancaria no válida.';
+          entidadInput.focus();
+          console.log('entidad no valido');
+          return false;
+      }
+    
+      if (!patroniban.test(iban)) {
+        erroresDiv.innerText = 'Formato IBAN incorrecto.';
+        ibanInput.focus();
+        console.log('iban no valido');
+        return false;
+      }
+      console.log('iban valido');
+      return true;
       }
       
 
@@ -204,13 +226,13 @@ window.onload = function() {
       if (
         !validarNombreApellido() ||
         !validarDNI() ||
-        !validarMatricula() ||
         !ValidarTelefono() ||
         !ValidarEmail() ||
-        !ValidarMarcayModelo() ||
+        !ValidarMarca() ||
+        !ValidarModelo() ||
+        !validarMatricula() ||
         !ValidarFecha() ||
         !ValidarHora() || 
-        !ValidarEntidad() ||
         !validarIBAN()
       ) {
         event.preventDefault(); // Evitar envío si hay errores
