@@ -56,7 +56,7 @@ window.onload = function() {
     // Función para validar matrícula usando una expresión regular
     function validarMatricula() {
       var matricula = matriculaInput.value.trim();
-      var patronMatricula = /^[A-Z]{1,3}-\d{4}$/;
+      var patronMatricula = /^\d{4}[A-Z]{3}$/;
 
       if (!patronMatricula.test(matricula)) {
         erroresDiv.innerText = 'Formato de matrícula incorrecto.';
