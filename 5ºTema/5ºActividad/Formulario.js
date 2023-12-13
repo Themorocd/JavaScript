@@ -40,14 +40,35 @@ window.onload = function() {
         erroresDiv.innerText = error;
         if (nombre === '') {
           nombreInput.focus();
-        } else {
+        }else{
           apellidosInput.focus();
-        }
+        }    
         return false;
       }
       console.log('nombre correcto');
+      erroresDiv.innerText ='';
       return true;
     }
+    function validarlongitud(){
+
+      let nombre = nombreInput.value.trim();
+      let apellidos = apellidosInput.value.trim();
+      let isName = /^[A-Z\s?]{3,15}$/;
+
+      if(!isName.test(nombre)){
+        erroresDiv.innerText='Formato de Nombre no valido';
+        nombreInput.focus();
+        return false;
+      }
+      if(!isName.test(apellidos)){
+        erroresDiv.innerText='Formato de Apellido no valido';
+        apellidosInput.focus();
+        return false;
+      }
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
+      return true;
+    }
+    
 
     // Función para validar campo DNI
     function validarDNI() {
@@ -76,6 +97,7 @@ window.onload = function() {
             return false;
         }
       console.log("dni correcto");
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
     }
 
@@ -92,6 +114,7 @@ window.onload = function() {
         return false;
       }
       console.log('telefono valido');
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
     }
 
@@ -107,6 +130,7 @@ window.onload = function() {
         return false;
       }
       console.log('email valido');
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
     }
     function ValidarMarca() {
@@ -122,6 +146,7 @@ window.onload = function() {
         
       }
       console.log('marca  valido');
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
     }
     function ValidarModelo(){
@@ -136,6 +161,7 @@ window.onload = function() {
         return false;
       }
       console.log('modelo valido');
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
     }
 
@@ -152,6 +178,7 @@ window.onload = function() {
         
       }
       console.log('matricula  valido');
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
     }
 
@@ -168,6 +195,7 @@ window.onload = function() {
         
       }
       console.log('fecha valido');
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
     }
     function ValidarHora() {
@@ -181,6 +209,7 @@ window.onload = function() {
         return false;
       }
       console.log('hora  valido');
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
     }
 
@@ -215,16 +244,17 @@ window.onload = function() {
         return false;
       }
       console.log('iban valido');
+      erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
       }
       
-
 
     // Event listener para el envío del formulario
     formulario.addEventListener('submit', function(event) {
       // Validar campos antes de enviar el formulario
       if (
         !validarNombreApellido() ||
+        !validarlongitud() ||
         !validarDNI() ||
         !ValidarTelefono() ||
         !ValidarEmail() ||
@@ -237,6 +267,7 @@ window.onload = function() {
       ) {
         event.preventDefault(); // Evitar envío si hay errores
       } else {
+        erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
         let confirmacion = confirm('¿Estás seguro de enviar el formulario?');
         if (!confirmacion) {
           event.preventDefault(); // Cancelar envío si se cancela la confirmación
