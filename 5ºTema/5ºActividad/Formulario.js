@@ -247,10 +247,12 @@ window.onload = function() {
       erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
       return true;
       }
+     
       
-
+    
     // Event listener para el envío del formulario
     formulario.addEventListener('submit', function(event) {
+      
       // Validar campos antes de enviar el formulario
       if (
         !validarNombreApellido() ||
@@ -267,13 +269,14 @@ window.onload = function() {
       ) {
         event.preventDefault(); // Evitar envío si hay errores
       } else {
-        erroresDiv.innerText ='';//Esto es para borrar los errores si estan bien
-        let confirmacion = confirm('¿Estás seguro de enviar el formulario?');
-        if (!confirmacion) {
-          event.preventDefault(); // Cancelar envío si se cancela la confirmación
-        }
-      
+        setTimeout(() => {
+          let confirmacion = confirm('¿Estás seguro de enviar el formulario?');
+          if (!confirmacion) {
+            event.preventDefault(); // Cancelar envío si se cancela la confirmación
+          }
+        }, 1); // Espera 1 milisegundos antes de mostrar la confirmación        
       }
+      
     });
   };
 
