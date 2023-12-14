@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script  src="Formulario.js"></script>
+<style type="text/css">
+label{
+    width: 150px;
+    float:left;
+    margin-bottom:5px;    
+}
+input,select {
+    width:150px;
+    float:left;
+    margin-bottom:5px;
+}
+
+fieldset{
+    background:#66CCCC;
+    width:350px;
+    border: thick solid #306;
+}
+
+legend{
+    border-top-width: medium;
+    border-right-width: medium;
+    border-bottom-width: medium;
+    border-left-width: medium;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    background-color: #FFF;    
+}
+
+#mensajes{
+    float: left;
+    background:#33FF33;
+    width: 325px;
+}
+
+#errores{
+    float: left;
+    background:#FF6633;
+    width: 325px;
+}
+
+#intentos{
+    float: left;
+    background:#CCFF33;
+    width: 325px;
+}
+
+.error{
+    border: solid 2px #FF0000;
+
+}
+
+</style>
+</head>
+<body>
+    <fieldset>
+        <legend>Tarea 4</legend>
+        <form name="formulario" id="formulario" action="index.html" method="get">
+          <label for="nombre">Nombre:</label>   <input type="text" name="nombre" id="nombre" />
+          <label for="apellidos">Apellidos:</label>   <input type="text" name="apellidos" id="apellidos" />
+          <label for="dni">NIF:</label>   <input name="nif" type="text" id="dni" />
+          <label for="telefono">Telefono:</label>   <input name="telefono" type="text" id="telefono" />
+          <label for="email">E-mail:</label>   <input name="email" type="email" id="email" />
+          <label for="marca">Marca:</label>   <input type="text" name="marca" id="marca" />
+          <label for="modelo">Modelo:</label>   <input type="text" name="modelo" id="modelo" />
+          <label for="matricula">Matricula:</label>   <input name="matricula" type="text" id="matricula" />
+          <label for="fecha">Fecha de la cita:</label>   <input name="fecha" type="text" id="fecha" />
+          <label for="hora">Hora de la cita:</label>   <input name="hora" type="text" id="hora" />
+          <label for="entidad">Entidad Bancaria:</label>   <select name="entidad" id="entidad">
+                                                            <option value="0" selected="selected">Entidad Bancaria</option>
+                                                            <option value="C">CaixaBank</option>
+                                                            <option value="B">Banco Santander</option>
+                                                            <option value="BA">Bankia</option>
+                                                            
+                                                        </select>
+          <label for="iban">IBAN:</label>   <input name="iban" type="text" id="iban" />
+          <input type="reset" name="limpiar" id="button" value="Limpiar" />
+          <input type="submit" name="enviar" id="enviar" value="Enviar" />
+        </form>
+        <div id="errores"></div>
+</body>
+</html>
