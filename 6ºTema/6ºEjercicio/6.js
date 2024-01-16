@@ -1,7 +1,7 @@
 window.onload = iniciar;
 
 function iniciar() {
-  cont = 1;
+  
   num = 0;
   num2 = 0;
 
@@ -13,6 +13,7 @@ function iniciar() {
 function genera() {
   num = Math.floor(Math.random() * (10 - 0 + 1) + 0);
   num2 = Math.floor(Math.random() * (10 - 0 + 1) + 0);
+
   let resulDIV = document.getElementById("primero");
 
   let resulDIV2 = document.getElementById("segundo");

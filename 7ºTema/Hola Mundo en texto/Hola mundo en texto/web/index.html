@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Descarga de archivo en servidor</h1>
+	<button id="btnDescargarArchivo">Descargar archivo</button>
+	
+	<script>
+		function descargarArchivo() {
+			var xhr = new XMLHttpRequest();//esta línea crea una nueva instancia de la clase XML
+			xhr.onreadystatechange = function() {//esta línea establece una función que se ejecutará cada vez que cambie el estado de la solicitud HTTP.
+				if (xhr.readyState == 4 && xhr.status == 200) {/*
+					 esta línea comprueba si la solicitud se ha realizado correctamente, es decir, 
+					 si se ha recibido una respuesta del servidor y el estado de la solicitud es "completado" (4).
+					*/
+					alert(xhr.responseText);
+				}else{
+                    alert(xhr.readyState);//cada vez que cambie el valor de "readyState", se mostrará un alert con el nuevo valor.
+                }
+			};
+			xhr.open("GET", "holamundo.txt", true);
+			xhr.send();
+		}
+		
+		document.getElementById("btnDescargarArchivo").addEventListener("click", descargarArchivo);
+	</script>
+</body>
+</html>
+
+

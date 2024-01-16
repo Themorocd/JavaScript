@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lectura de archivo XML en servidor</h1>
+	<button id="btnLeerArchivo">Leer archivo</button>
+	
+	<div id="contenido"></div>
+	
+	<script>
+		function leerArchivo() {
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var xml = xhr.responseXML;// esta línea obtiene el contenido de la respuesta del servidor en formato XML.
+					var cds = xml.getElementsByTagName("CD");//esta línea obtiene una lista de todos los elementos "CD" del archivo XML.
+					
+					var contenido="";//esta línea crea una variable para almacenar el contenido que se mostrará en la página web.
+                    for (var i = 0; i < cds.length; i++) {// esta línea es un bucle que se ejecutará tantas veces como elementos "CD" haya en el archivo XML.
+
+					var titulo = cds[i].getElementsByTagName("TITULO")[0].textContent;//esta línea obtiene el contenido del primer elemento "TITULO" del elemento "CD" actual.
+					var artista = cds[i].getElementsByTagName("ARTISTA")[0].textContent;
+					var pais = cds[i].getElementsByTagName("PAIS")[0].textContent;
+					var promotora = cds[i].getElementsByTagName("PROMOTORA")[0].textContent;
+					var precio = cds[i].getElementsByTagName("PRECIO")[0].textContent;
+					var ano = cds[i].getElementsByTagName("ANIO")[0].textContent;
+					
+                    contenido += "<h2>CD " + (i + 1) + "</h2>" +//esta línea añade al contenido de la variable el título del CD y la información del artista, país, promotora, precio y año.
+									 "<p>Título: " + titulo + "</p>" +
+									 "<p>Artista: " + artista + "</p>" +
+									 "<p>País: " + pais + "</p>" +
+									 "<p>Promotora: " + promotora + "</p>" +
+									 "<p>Precio: " + precio + "</p>" +
+									 "<p>Año: " + ano + "</p>";
+					}
+                    document.getElementById("contenido").innerHTML = contenido;//esta línea inserta el contenido de la variable en la división con ID "contenido".
+				}
+			};
+			xhr.open("GET", "datosXML.xml", true);//esta línea abre la solicitud HTTP para obtener el archivo XML desde el servidor local.
+			xhr.setRequestHeader('Access-Control-Allow-Origin', '*');//El método setRequestHeader establece un encabezado en la solicitud.
+			xhr.send();//esta línea envía la solicitud HTTP.
+		}
+		
+		document.getElementById("btnLeerArchivo").addEventListener("click", leerArchivo);
+		//esta línea establece una función que se ejecutará cada vez que se haga clic en el botón con ID "btnLeerArchivo". La función que se ejecutará será "leerArchivo".      
+	</script>
+					
+</body>
+</html>
