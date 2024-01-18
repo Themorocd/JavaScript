@@ -18,7 +18,7 @@
 
         mensaje = "El nombre [" + usuario + "] no esta disponible, prueba con: <br>"
                 + "<respuesta><mensaje><ul>"
-                 + "<li><a href='#' onclick='copiarTexto(\"124" + usuario + "a\");'>124" + usuario + "a</a></li>"
+                + "<li><a href='#' onclick='copiarTexto(\"124" + usuario + "a\");'>124" + usuario + "a</a></li>"
                 + "<li><a href='#' onclick='copiarTexto(\"zz23" + usuario + "1\");'>zz23" + usuario + "1</a></li>"
                 + "<li><a href='#' onclick='copiarTexto(\"" + usuario + "111\");'>" + usuario + "111</a></li>"
                 + "<li><a href='#' onclick='copiarTexto(\"_" + usuario + "567\");'>_" + usuario + "567</a></li>"
@@ -30,7 +30,7 @@
         mensaje = "El nombre [" + usuario + "] esta disponible";
         out.print(mensaje);
     }
-
+    
 
 %>
 
