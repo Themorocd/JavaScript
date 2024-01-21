@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <form>
+            <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+            <input type="text" id="fecha_nacimiento" name="fecha_nacimiento" /><br/>
+            <label for="codigo_postal">Codigo postal:</label>
+            <input type="text" id="codigo_postal" name="codigo_postal" /><br/>
+            <label for="telefono">Telefono:</label>
+            <input type="text" id="telefono" name="telefono" /><br/>
+            <input type="button" value="Validar datos" onclick="validar()"/>
+        </form>
+        <div id="respuesta"></div>
+    </form>
+    <script>
+
+
+
+       let peticion_http = new XMLHttpRequest();
+        function crear_query_String() {
+
+            let fecha = document.getElementById("fecha_nacimiento");
+            let cp = document.getElementById("codigo_postal");
+            let telefono = document.getElementById("telefono");
+
+            return "fecha_nacimiento=" + encodeURIComponent(fecha.value) + "&codigo_postal=" + encodeURIComponent(cp.value) + "&telefono=" + encodeURIComponent(telefono.value) + "&nocache" + Math.random();
+
+        }
+
+        function validar() {
+            
+            if (peticion_http) {
+                peticion_http.onreadystatechange = procesaRespuesta;
+                peticion_http.open("POST", "valido.jsp", true);
+                peticion_http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                let query_string = crear_query_String();
+                peticion_http.send(query_string);
+                alert(query_string);
+            }
+        }
+        function procesaRespuesta() {
+            if (peticion_http.readyState == 4) {
+                if (peticion_http.status == 200) {
+                    document.getElementById("respuesta").innerHTML = peticion_http.responseText;
+                }
+            }
+        }
+
+
+
+
+    </script>
+</body>
+</html>
