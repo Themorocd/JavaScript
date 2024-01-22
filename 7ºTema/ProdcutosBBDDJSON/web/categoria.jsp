@@ -1,4 +1,4 @@
-<%-- 
+"<%-- 
     Document   : categoria
     Created on : 21 ene 2024, 20:58:58
     Author     : moro-
@@ -12,8 +12,8 @@
 
 <%
 
-    String catego = request.getParameter("catego");
-    //String catego = "Frutas";
+    //String catego = request.getParameter("catego");
+    String catego = "vino";
     String mensaje = "";
 
     String sql = "SELECT productos.NombreProducto, proveedores.NombreCompania FROM productos JOIN proveedores ON productos.IdProveedor = proveedores.IdProveedor JOIN categorias ON productos.IdCategoria = categorias.IdCategoria WHERE categorias.NombreCategoria LIKE '%" + catego + "%'";

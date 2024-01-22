@@ -10,8 +10,8 @@
 
 <%
 
-    String catego = request.getParameter("catego");
-    //String catego = "Frutas";
+    //String catego = request.getParameter("catego");
+    String catego = "frutas";
     String mensaje = "";
 
     String sql = "SELECT productos.NombreProducto, proveedores.NombreCompania FROM productos JOIN proveedores ON productos.IdProveedor = proveedores.IdProveedor JOIN categorias ON productos.IdCategoria = categorias.IdCategoria WHERE categorias.NombreCategoria LIKE '%" + catego + "%'";
@@ -22,6 +22,7 @@
         response.setContentType("application/xml"); // Configura el tipo de contenido
         //Asi le doy forma al xml
         out.print("<respuesta>");
+        out.print("<encontrado>si</encontrado>");
         out.print("<mensaje>");
 
         for (categoria elem : List) {
@@ -35,7 +36,12 @@
         out.print("</respuesta>");
         //hasta aqui es la forma xml
     } else {
-        out.print("<h1>No existe ningun producto disponible de la categoria:[" + catego + "]</h1>");
+        out.print("<respuesta>");
+        out.print("<encontrado>no</encontrado>");
+        //out.print("<mensaje>");
+        //out.print("<h1>No existe ningun producto disponible de la categoria:[" + catego + "]</h1>");
+        //out.print("</mensaje>");
+        out.print("</respuesta>");
     }
 
 

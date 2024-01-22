@@ -23,7 +23,7 @@ function validar() {
     peticion.send(query);
 }
 
-function crearQuery() { // Cambiado a JSON
+function crearQuery() { 
     catego = document.getElementById("name").value;
 
     return "catego=" + encodeURIComponent(catego) + "&nocache=" + Math.random();
