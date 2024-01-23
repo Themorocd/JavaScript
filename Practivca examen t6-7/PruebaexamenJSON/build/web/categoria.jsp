@@ -23,7 +23,7 @@
     for (int x = 0; x < List.size(); x++) {
             categorias elem = List.get(x);
             
-            mensaje +="{ \"producto\": \"" +elem.getProducto() + "\", \"proveedor\": \""+elem.getProveedor()+ "\" }";
+            mensaje +="{ \'producto\': \'" +elem.getProducto() + "\', \'proveedor\': \'"+elem.getProveedor()+ "\' }";
        
             if(x < List.size() - 1){
             mensaje +=",";
