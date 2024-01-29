@@ -66,7 +66,7 @@ clear:both;
 margin-left:150px;
 width:125px;
 height:31px;
-background:#666666 url(img/button.png) no-repeat;
+background:#666666 //url(img/button.png) no-repeat;
 text-align:center;
 line-height:31px;
 color:#FFFFFF;
@@ -74,6 +74,7 @@ font-size:11px;
 font-weight:bold;
 }
         </style>
+        <script src="compruebo.js"></script>
     </head>
     <body>
 
@@ -83,7 +84,7 @@ font-weight:bold;
                 <p align="center">Encuntra tus pelis preferidas en el videoclub más cercano<img src="imagenes/videoteca.gif" width="320" height="239"></p>
                 <label for="categoria">Categoria
                     <span class="small">Selecciona una categoría</span></label>
-                <select id="categoria">
+                <select id="categoria" name="categoria">
                     <option>Cargando...</option>
                 </select>
 
@@ -110,13 +111,5 @@ font-weight:bold;
 
             </table>
         </div>
-
-
-
-
-
-
-
-
     </body>
 </html>
