@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.categorias;
+import modelo.pelicula;
+import modelo.videoclub;
+
 
 /**
  *
@@ -66,5 +69,61 @@ public class BD {
          return List;
         
     }
+    public static ArrayList<videoclub> compruebavideoclubs(String sql){
+        
+        Connection cnn = null;
+        ArrayList<videoclub> List = new ArrayList<videoclub>();
+        
+        videoclub vide = null;
+        
+        try {
+            cnn = CrearConexion();
+            
+            PreparedStatement pst = cnn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {                
+                vide = new videoclub(rs.getString(1),rs.getString(2));
+                List.add(vide);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+        
+         return List;
+        
+    }
     
+      public static ArrayList<pelicula> consultapelis(String sql){
+        
+        Connection cnn = null;
+        ArrayList<pelicula> List = new ArrayList<pelicula>();
+        
+        pelicula peli = null;
+        
+        try {
+            cnn = CrearConexion();
+            
+            PreparedStatement pst = cnn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {                
+                peli = new pelicula(rs.getString(1));
+                List.add(peli);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+        
+         return List;
+        
+    }
+    
+    
+    
+     
 }
