@@ -32,9 +32,9 @@ function iniciar() {
     // Agregar evento al cambio de categoría
     document.getElementById("categoria").addEventListener("change", cargaVideoclubs);
     
-    //document.getElementById("tienda").addEventListener("change", cargaVideoclubs);
+    //document.getElementById("tienda").addEventListener("change", cargaVideoclubs);//si pongo esto al se me resetea siempre videoclub y no se fija
 
-
+    
 
 
 }
@@ -52,17 +52,19 @@ function procesarespuestacategoria() {
 
 
     if (peticion.readyState == 4 && peticion.status == 200) {
-
-        let codigo = peticion.responseXML.getElementsByTagName("codigo");
-        let nombre = peticion.responseXML.getElementsByTagName("nombre");
+        
+           let JSON = peticion.responseText;
+           let objson = eval("("+JSON+")");
+        
+        let confirmo = objson.length - 1;
         let listacategorias = document.getElementById("categoria");
         let contenidoHTML = "";
-
-        if (codigo.length > 0) {
-                contenidoHTML += "<option value=cargando>Cargando...</option>";
-            for (let x = 0; x < codigo.length; x++) {
+        
+        if(confirmo > 0){           
+            contenidoHTML += "<option value=cargando>Cargando...</option>";
+            for (let x = 0; x < objson.length; x++) {
                 
-                contenidoHTML += "<option value=\"" + codigo[x].textContent + "\">" + nombre[x].textContent + "</option>";
+                contenidoHTML += "<option value=\"" + objson[x].codigoCategoria + "\">" + objson[x].nombreCategoria + "</option>";
             }
             listacategorias.innerHTML = contenidoHTML;
             if(listacategorias.value !== ""){
@@ -79,7 +81,8 @@ function procesarespuestacategoria() {
 
 function cargaVideoclubs(){
     
-     document.getElementById("peliculas").innerHTML = "";
+    
+    document.getElementById("peliculas").innerHTML="";
     
     peticion = new XMLHttpRequest();
 
@@ -105,16 +108,21 @@ function creaqueryvideo(){
 function procesarespuestavideoclub(){
     
     if (peticion.readyState == 4 && peticion.status == 200) {
-
-        let codigo = peticion.responseXML.getElementsByTagName("codigo");
-        let nombre = peticion.responseXML.getElementsByTagName("nombre");
+        
+        let JSON = peticion.responseText;
+        let objson = eval("("+JSON+")");
+        
+        let confirmo = objson.length - 1;
+        
+        
+        
         let listatienda = document.getElementById("tienda");
         let contenidoHTML = "";
 
-        if (codigo.length > 0) {
+        if (confirmo > 0) {
 
-            for (let x = 0; x < codigo.length; x++) {
-                contenidoHTML += "<option value=\"" + codigo[x].textContent + "\">" + nombre[x].textContent + "</option>";
+            for (let x = 0; x < objson.length; x++) {
+                contenidoHTML += "<option value=\"" + objson[x].codigoVideoclub + "\">" + objson[x].nombreVideoclub + "</option>";
             }
             listatienda.innerHTML = contenidoHTML;
             if(listatienda !==""){
@@ -161,20 +169,24 @@ function creaquerypelis(){
 
 function procesarespuestapelis(){
     if (peticion.readyState == 4 && peticion.status == 200) {
-
-        let pelicula = peticion.responseXML.getElementsByTagName("pelicula");
+        
+        let JSON = peticion.responseText;
+        let objson = eval("("+JSON+")");
+        
+        let confirmo = objson.length - 1;
+  
         
         let listapelis = document.getElementById("peliculas");
         
 
-        if (pelicula.length > 0) {
+        if (confirmo > 0) {
         let contenidoHTML = "<h1>Peliculas disponibles </h1><table border='5'"
         +"<tr>"
         +"<td>Pelicula</td>";
         
 
-            for (let x = 0; x < pelicula.length; x++) {
-                contenidoHTML +="<tr><td>"+pelicula[x].textContent+"</td></tr>";
+            for (let x = 0; x < objson.length; x++) {
+                contenidoHTML +="<tr><td>"+objson[x].nombrePelicula+"</td></tr>";
             }
             contenidoHTML +="</tr></table>";
             listapelis.innerHTML = contenidoHTML;

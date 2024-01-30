@@ -9,13 +9,20 @@ package modelo;
  * @author moro-
  */
 public class pelicula {
-    String nombre;
+    String id,nombre;
 
-    public pelicula(String nombre) {
+    public pelicula(String id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
-    
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
@@ -24,5 +31,6 @@ public class pelicula {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     
 }

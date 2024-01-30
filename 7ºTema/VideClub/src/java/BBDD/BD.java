@@ -110,7 +110,7 @@ public class BD {
             ResultSet rs = pst.executeQuery();
             
             while (rs.next()) {                
-                peli = new pelicula(rs.getString(1));
+                peli = new pelicula(rs.getString(1),rs.getString(2));
                 List.add(peli);
             }
             
