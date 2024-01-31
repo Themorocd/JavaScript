@@ -2,8 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
-
-
 window.onload = iniciar;
 
 peticion = null;
@@ -39,28 +37,28 @@ function creaqueryclientes(){
     
 }
 
-
 function procesarespuestacliente(){
     
     
     if(peticion.readyState == 4 && peticion.status == 200){
         
         
-        let codigo = peticion.responseXML.getElementsByTagName("codigo");
+        let respuestaJSON = peticion.responseText;
+        let objson = eval("(" + respuestaJSON + ")");
         
-        let nombre = peticion.responseXML.getElementsByTagName("nombre");
-        
+        let confirmo = objson.length - 1;
+                
         let listaclientes = document.getElementById("clientes");
         
         let contenidoHTML="";
         
         
         
-        if(codigo.length > 0 ){
+        if(confirmo > 0 ){
             contenidoHTML += "<option value=cargando>Cargando...</option>";
             
-            for (let x = 0; x < codigo.length; x++) {
-                contenidoHTML += "<option value=\""+codigo[x].textContent+"\">"+nombre[x].textContent +"</option>";
+            for (let x = 0; x < objson.length; x++) {
+                contenidoHTML += "<option value=\""+objson[x].codigoCliente+"\">"+objson[x].nombre +"</option>";
             }
             
             
@@ -74,7 +72,6 @@ function procesarespuestacliente(){
         }
    
     }
-
     
 }
 
@@ -114,18 +111,19 @@ function procesarespuestapedidos(){
     if(peticion.readyState == 4 && peticion.status == 200){
         
         
-        let codigo = peticion.responseXML.getElementsByTagName("codigo");
-        let fecha = peticion.responseXML.getElementsByTagName("fecha");
-        let destinatario = peticion.responseXML.getElementsByTagName("destinatario");
+        let respuestaJSON = peticion.responseText;
+        let objson = eval("(" + respuestaJSON + ")");
+        
+        let confirmo = objson.length - 1;
         
         let listapedidos = document.getElementById("pedidos");
         
         let contenidoHTML ="";
         
-        if(codigo.length > 0 ){
+        if(confirmo > 0 ){
             
-            for (let x = 0; x < codigo.length; x++) {
-                contenidoHTML += "<option value=\""+codigo[x].textContent+"\">"+fecha[x].textContent +"-"+destinatario[x].textContent+"</option>";
+            for (let x = 0; x < objson.length; x++) {
+                contenidoHTML += "<option value=\""+objson[x].codigoPedido+"\">"+objson[x].fechaPedido+"-"+objson[x].destinatario+"</option>";
                 
             }
             
@@ -172,24 +170,23 @@ function creaqueryfacturas(){
    
     
 }
-    
-    
+        
     
 function procesarespuestafacturas(){
     if(peticion.readyState == 4 && peticion.status == 200){
         
         
-        let producto = peticion.responseXML.getElementsByTagName("producto");
-        let cantidad = peticion.responseXML.getElementsByTagName("cantidad");
-        let precio = peticion.responseXML.getElementsByTagName("precio");
-        let descuento = peticion.responseXML.getElementsByTagName("descuento");
+       let respuestaJSON = peticion.responseText;
+       let objson = eval("(" + respuestaJSON + ")");
+        
+        let confirmo = objson.length - 1;
         
         let listafacturas = document.getElementById("facturas");
         
         let contenidoHTML ="";
         let totalfactura =0;
         
-        if(producto.length > 0 ){
+        if(confirmo > 0 ){
             contenidoHTML += "<h1>Detalle de la Factura </h1><table border='5'"
             +"<tr>"
             +"<td>Producto</td>"
@@ -197,13 +194,13 @@ function procesarespuestafacturas(){
             +"<td>Precio</td>"
             +"<td>Descuento</td>"
             +"<td>Total</td>";
-            for (let x = 0; x < producto.length; x++) {
-                let precioUnitario = parseFloat(precio[x].textContent);
-                let cantidadProducto = parseFloat(cantidad[x].textContent);
-                let descuentoProducto = parseFloat(descuento[x].textContent);
+            for (let x = 0; x < objson.length; x++) {
+                let precioUnitario = parseFloat(objson[x].Precio);
+                let cantidadProducto = parseFloat(objson[x].Cantidad);
+                let descuentoProducto = parseFloat(objson[x].Descuento);
                 let totalProducto = (precioUnitario * cantidadProducto) - ((precioUnitario * cantidadProducto * descuentoProducto) / 100);
 
-                contenidoHTML +="<tr><td>"+producto[x].textContent+"<td>"+cantidad[x].textContent+"<td>"+precio[x].textContent+"<td>"+descuento[x].textContent+"<td>"+totalProducto.toFixed(2)+"</td></tr>";
+                contenidoHTML +="<tr><td>"+objson[x].Producto+"<td>"+objson[x].Cantidad+"<td>"+objson[x].Precio+"<td>"+objson[x].Descuento+"<td>"+totalProducto.toFixed(2)+"</td></tr>";
                 totalfactura += totalProducto;
             }
             contenidoHTML +="</tr></table>";
