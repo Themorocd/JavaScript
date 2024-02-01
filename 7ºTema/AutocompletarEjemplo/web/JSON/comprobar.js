@@ -30,11 +30,11 @@ function iniciar() {
 
 function autocompletar(event) {
 
-    let tecla = event.keyCode;
+    let tecla = event.keyCode;//pillo el numero de la tecla
     
     console.log(tecla);
 
-    if (tecla == 40) {
+    if (tecla == 40) {//Bajo y muestro las sugerencias
 
         if (elementoseleccionado + 1 < sugerencias.length) {
 
@@ -52,7 +52,7 @@ function autocompletar(event) {
 
     } else if (tecla == 13) {
 
-        alert("Aqui se produce un evento que creo que me muestra informacion sobre ese elemento");
+        alert("Aqui tendria una funcion que me mostraria la informacion sobre ese elemento");
 
     } else {
         texto = document.getElementById("texto").value;
@@ -104,9 +104,9 @@ function procesarespuesta() {
 
         sugerencias = eval("(" + respuestaJSON + ")");
 
-        if (sugerencias.length == 0) {
+        if (sugerencias.length == 0) {//sino encuentra nada llamo a sin resultados
             sinresultados();
-        } else {
+        } else {//si encuentra algo llamo a atualizarsugerencias
             cachesugerencias[texto] = sugerencias;
             atualizarsugerencias();
         }
@@ -136,7 +136,7 @@ function mostrarsugerencias() {
     zonasugerencias.innerHTML = "";
 
     // Utilizar la función formateaLista para generar la lista HTML
-    let listaHTML = sugerencias.formateaLista(elementoseleccionado);
+    let listaHTML = sugerencias.formateaLista(elementoseleccionado);//formateo y pinto la lista 
 
     // Agregar la lista HTML al div de sugerencias
     zonasugerencias.innerHTML = listaHTML;
