@@ -24,6 +24,7 @@
     boolean entra = false;
     
     for (int x = 1; x < asignaturas.length; x++) {
+        
             asig=asignaturas[x].substring(0,cadena.length());
             if(asig.equalsIgnoreCase(cadena)){
             String cad = "";

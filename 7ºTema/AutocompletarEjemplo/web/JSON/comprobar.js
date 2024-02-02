@@ -10,9 +10,12 @@ peticion = null
 
 let texto;
 
+
+let elementoseleccionado = -1;
+
 let cachesugerencias = {}; // Agregué esta variable para almacenar las sugerencias en caché.
 
-let sugerencias;
+let sugerencias = null;
 
 function iniciar() {
     //Creo div para mostrar sugerencias dadas por el servidor
@@ -22,8 +25,8 @@ function iniciar() {
     //coloco el div al final del body
     document.body.innerHTML += sugerenciasDIV.outerHTML;
     //llama a autocompletar al soltar la tecla
-    document.getElementById("texto").addEventListener("keyup", autocompletar);
-   
+    document.getElementById("texto").onkeyup = autocompletar;
+
     //mantiene el foco en texto
     document.getElementById("texto").focus();
 }
@@ -31,7 +34,7 @@ function iniciar() {
 function autocompletar(event) {
 
     let tecla = event.keyCode;//pillo el numero de la tecla
-    
+
     console.log(tecla);
 
     if (tecla == 40) {//Bajo y muestro las sugerencias
@@ -51,14 +54,16 @@ function autocompletar(event) {
         mostrarsugerencias();
 
     } else if (tecla == 13) {
-
-        alert("Aqui tendria una funcion que me mostraria la informacion sobre ese elemento");
+        seleccionaElemento();
+        //alert("Aqui tendria una funcion que me mostraria la informacion sobre ese elemento");
 
     } else {
         texto = document.getElementById("texto").value;
 
         if (tecla == 8 && texto == "") {
-
+            
+            sugerencias=null;
+            
             borrarlista();
 
             return;
@@ -82,7 +87,8 @@ function autocompletar(event) {
             peticion.send(creaquery());
 
         } else {
-
+            sugerencias = cachesugerencias[texto]; 
+                       
             atualizarsugerencias();
 
         }
@@ -128,6 +134,18 @@ function atualizarsugerencias() {
     mostrarsugerencias();
 }
 
+function seleccionaElemento() {
+
+    if (sugerencias[elementoseleccionado]) {
+        
+        console.log(sugerencias[elementoseleccionado]);
+        
+        document.getElementById("texto").value = sugerencias[elementoseleccionado];
+             
+        borrarlista();
+    }
+}
+
 function mostrarsugerencias() {
 
     let zonasugerencias = document.getElementById("sugerencias");
@@ -155,16 +173,16 @@ function borrarlista() {
 }
 
 
-Array.prototype.formateaLista = function() {
-    let codigohtml="";
-    codigohtml="<ul>";
+Array.prototype.formateaLista = function () {
+    let codigohtml = "";
+    codigohtml = "<ul>";
     for (let x = 0; x < this.length; x++) {
-        if(x == elementoseleccionado){
-            codigohtml+="<li class=\"seleccionado\">"+this[x]+"</li>";
-        }else{
-            codigohtml+="<li>"+this[x]+"</li>";
+        if (x == elementoseleccionado) {
+            codigohtml += "<li class=\"seleccionado\">" + this[x] + "</li>";
+        } else {
+            codigohtml += "<li>" + this[x] + "</li>";
         }
     }
-    codigohtml+="</ul>";
+    codigohtml += "</ul>";
     return codigohtml;
 }
