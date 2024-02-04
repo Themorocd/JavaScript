@@ -18,6 +18,9 @@ let sugerencias = null;
 
 function iniciar(){
     
+    
+    
+    
     leoorigen();
     
     let sugerenciasdiv = document.createElement("div");

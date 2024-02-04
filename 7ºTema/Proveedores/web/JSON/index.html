@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Control de Proveedores</title>
+        <script src="comprobar.js"></script>
+
+        <style>
+            #cajaCentral {
+                background-color: #D2D2D2;
+                width: 50%;
+                margin-left: 25%;
+                border: solid 2px black;
+            }
+
+            #texto {
+                text-align: center;
+            }
+
+            img {
+                margin-left: 27%;
+            }
+
+            h2 {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="cajaCentral">
+            <h2>Control de Proveedores</h2>
+            <img src="images/proveedores.png" alt="videoteca" width="300px" height="300px" />
+            <hr style="background-color: black; margin-bottom: 25px" size="2px">
+            <form style="text-align: center">
+                <label for="categoria">Seleccione una Categoria</label>
+                <select name="categoria" id="categoria" name="categoria">
+                    <option value="0">-Selecciona-</option>
+                </select>
+                <br><br>
+                <label for="producto">Seleccione un Producto</label>
+                <select name="producto" id="producto" name="producto">
+                    <option value="0">Seleccionar una opción</option>
+                </select>
+                <br><br>
+                <input type="button" id="boton" name="boton" value="Aceptar" />
+            </form>
+            <div id="id">
+            </div>
+        </div>
+    </body>
+
+</html>
+
