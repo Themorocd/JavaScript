@@ -16,6 +16,25 @@ let cachesugerencias ={};
 
 let sugerencias = null;
 
+  let fechasalida;
+    
+    let fechavuelta;
+     
+    let horarioSalida;
+    let horarioRegreso ;
+   
+    
+    
+    let adultos; 
+  
+    let ninos;
+     
+    let bebes;
+    
+   let provincias;
+    
+
+
 function iniciar(){
     
     
@@ -248,10 +267,13 @@ function compruebodatos(){
          
          peticion.open("POST","reserva.jsp",true);
          
-         peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+         peticion.setRequestHeader("Content-Type", "application/x-www-form-urlencoded: charset=UTF-8");
 
          let query = creaqueryreserva();
-            
+         
+         console.log("fechavuelta antes del send:"+fechavuelta);
+         
+         
          peticion.send(creaqueryreserva());
         
          //console.log("Redirigiendo...");
@@ -264,26 +286,26 @@ function compruebodatos(){
 
 function creaqueryreserva(){
     
-    let fechasalida = document.getElementById("fechaSalida").value;
-    
-    let fechavuelta = document.getElementById("fechaRegreso").value;
+     fechasalida = document.getElementById("fechaSalida").value;
+   
+     fechavuelta = document.getElementById("fechaRegreso").value;
      
-    let horarioSalida = document.querySelector('input[name="salida"]:checked');
-    let horarioRegreso = document.querySelector('input[name="regreso"]:checked');
+     horarioSalida = document.querySelector('input[name="salida"]:checked');
+     horarioRegreso = document.querySelector('input[name="regreso"]:checked');
     horarioSalida = horarioSalida.value;
-     
+     console.log("horarioSalida:"+horarioSalida);
     horarioRegreso = horarioRegreso.value;
-     
-    let adultos = parseInt(document.getElementById("adultos").value); 
-     
-    let ninos = parseInt(document.getElementById("ninos").value);
-     
-    let bebes = parseInt(document.getElementById("bebes").value);
-     
+     console.log("horarioRegreso:"+horarioRegreso);
+     adultos = parseInt(document.getElementById("adultos").value); 
+     console.log("adultos:"+adultos);
+     ninos = parseInt(document.getElementById("ninos").value);
+     console.log("ninos:"+ninos);
+     bebes = parseInt(document.getElementById("bebes").value);
+     console.log("bebes:"+bebes);
     provincias = document.getElementById("provincias").value;
-     
-    texto = document.getElementById("texto").value;
     console.log("provincia:"+provincias);
+    texto = document.getElementById("texto").value;
+    console.log("texto:"+texto);
     return "fechasalida="+encodeURIComponent(fechasalida)+"&fechavuelta="+encodeURIComponent(fechavuelta)+"&horarioSalida="+encodeURIComponent(horarioSalida)+"&horarioRegreso="+encodeURIComponent(horarioRegreso)+"&adultos="+encodeURIComponent(adultos)+"&ninos="+encodeURIComponent(ninos)+"&bebes="+encodeURIComponent(bebes)+"&provincias="+encodeURIComponent(provincias)+"&texto="+encodeURIComponent(texto)+"&nocache="+Math.random();
   
 }

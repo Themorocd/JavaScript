@@ -13,25 +13,25 @@
     </head>
     <body>
         <%
-            //request.setCharacterEncoding("UTF-8");
+            request.setCharacterEncoding("UTF-8");
             String origen = request.getParameter("provincias");
-            System.out.println("origen:"+origen);
+            System.out.println("origen: "+origen);
             String municipio = request.getParameter("texto");
-            System.out.println("municipio"+municipio);
+            System.out.println("municipio: "+municipio);
             String fechaSalida = request.getParameter("fechasalida");
-            System.out.println("fechaSalida"+fechaSalida);
+            System.out.println("fechaSalida: "+fechaSalida);
             String fechaRegreso = request.getParameter("fechavuelta");
-            System.out.println("fechaRegreso"+fechaRegreso);
+            System.out.println("fechaRegreso: "+fechaRegreso);
             String regreso = request.getParameter("horarioRegreso");
-            System.out.println("regreso"+regreso);
+            System.out.println("regreso: "+regreso);
             String salida = request.getParameter("horarioSalida");
-            System.out.println("salida"+salida);
+            System.out.println("salida: "+salida);
             String adultos = request.getParameter("adultos");
-            System.out.println("adultos"+adultos);
+            System.out.println("adultos: "+adultos);
             String ninos = request.getParameter("ninos");
-            System.out.println("ninos"+ninos);
+            System.out.println("ninos: "+ninos);
             String bebes = request.getParameter("bebes");
-            System.out.println("bebes"+bebes);
+            System.out.println("bebes: "+bebes);
 
         %>
         <div class="container p-3 position-absolute top-50 start-50 translate-middle rounded " style="width: 50%; background-color: #e1e3d8;">
