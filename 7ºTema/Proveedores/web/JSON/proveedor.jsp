@@ -11,7 +11,7 @@
 
 
     String producto = request.getParameter("producto");
-    //String producto = "1";
+    //String producto = "7";
     
     String sql = "select * from proveedores where idProveedor='"+producto+"'";
     
