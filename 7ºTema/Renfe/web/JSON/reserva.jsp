@@ -13,7 +13,7 @@
     </head>
     <body>
         <%
-            request.setCharacterEncoding("UTF-8");
+            //request.setCharacterEncoding("UTF-8");
             String origen = request.getParameter("provincias");
             System.out.println("origen: "+origen);
             String municipio = request.getParameter("texto");
