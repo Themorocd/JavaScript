@@ -113,10 +113,6 @@ function creaquerypedidos(){
     
 }
 
-function resetearCargafacturas(){
-     document.getElementById("boton").removeEventListener("click", cargafacturas);
-
-}
 function resetearCargafacturas() {
     // Elimina el contenido de "facturas" al cambiar de pedido
     document.getElementById("facturas").innerHTML = "";
@@ -233,5 +229,3 @@ function procesarespuestafacturas(){
         
     }
 }
-
-document.getElementById("boton").addEventListener("click", cargafacturas);
