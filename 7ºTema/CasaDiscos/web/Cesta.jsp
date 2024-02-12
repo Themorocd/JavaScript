@@ -35,7 +35,7 @@
     </head>
     <body>
         <table border="5" align="center">
-            <form action="enviodatos" method="POST">
+            <form action="actualizar" method="POST">
             <thead>
                 <tr>
                     <th>Casa disco</th>
@@ -71,7 +71,20 @@
                 <tr>
                     <td><img src="images/<%=elem.getPortada()%>.jpg"></td>
                     <td><%=elem.getTitulo()%></td>
-                    <td><%=elem.getCantdestacados()%></td>
+                    <td>
+                        <select name="id_<%=elem.getIddisco()%>">
+                            <option hidden value="<%=elem.getCantdestacados()%>"> <%=elem.getCantdestacados()%></option>
+                            <%
+                            for (int x = 0; x <= 10; x++) {
+                                    
+                                
+                            %>
+                            <option value="<%=x%>"><%=x%></option>
+                           <%}%>
+                        </select>
+
+                       
+                    </td>
                     <%
                     
                         double can = elem.getCantdestacados();
@@ -97,9 +110,16 @@
                 
                 %>
                 <tr>
-                    <td><input type="submit" name="Confirmar Pedido"></td>
+                    <td><input type="submit" value="Actualizar Pedido"></td>
                 </tr>
+                </form>
+                <form action="enviodatos" method="POST">
+                    <tr>
+                        <td> <input type="submit" value="Tramitar pedido"/></td>
+                    </tr>
+            
             </tbody>
+            
             </form>
         </table>
 

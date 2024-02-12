@@ -37,97 +37,132 @@ public class BD {
         }
         return cnn;
     }
-    
-    
-    
-    
-    
+
     public static ArrayList<usuarios> compruebauser(String sql) {
-        
-    
+
         Connection cnn = null;
-        
+
         usuarios user = null;
-        
+
         ArrayList<usuarios> List = new ArrayList<usuarios>();
-        
+
         try {
             cnn = CrearConexion();
-            
+
             PreparedStatement pst = cnn.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            
-            
-            while (rs.next()) {                
+
+            while (rs.next()) {
                 user = new usuarios(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
                 List.add(user);
-            
-            
+
             }
-            
-            
-        } catch (Exception e) {
-        }
-  
-    
-        return List;
-    
-    }
-    
-    
-    public static ArrayList<Discos> consultadiscos(String sql){
-        
-        Connection cnn = null;
-        
-        Discos dis = null;
-        
-        ArrayList<Discos> List = new ArrayList<Discos>();
-        
-        try {
-            cnn = CrearConexion();
-            
-            PreparedStatement pst = cnn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            
-            while (rs.next()) {                
-                dis = new Discos (rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getString(6));
-                List.add(dis);
-            }
-            
-            
+
         } catch (Exception e) {
         }
 
         return List;
-        
+
+    }
+
+    public static ArrayList<Discos> consultadiscos(String sql) {
+
+        Connection cnn = null;
+
+        Discos dis = null;
+
+        ArrayList<Discos> List = new ArrayList<Discos>();
+
+        try {
+            cnn = CrearConexion();
+
+            PreparedStatement pst = cnn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                dis = new Discos(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getString(6));
+                List.add(dis);
+            }
+
+        } catch (Exception e) {
+        }
+
+        return List;
+
     }
 
     public static Discos buscodisco(String sql, int cantidad) {
-           
+
+        Connection cnn = null;
+
+        Discos disco = null;
+
+        try {
+            cnn = CrearConexion();
+
+            PreparedStatement pst = cnn.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                disco = new Discos(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getString(6), cantidad);
+
+            }
+        } catch (Exception e) {
+        }
+
+        return disco;
+
+    }
+
+    public static void altapedido(String sql1) {
+
+        Connection cnn = null;
+
+        try {
+            cnn = CrearConexion();
+
+            PreparedStatement pst = cnn.prepareStatement(sql1);
+            pst.executeUpdate();
+        } catch (Exception e) {
+        }
+
+    }
+
+    public static int consultaidpedido(String sql2) {
+
+        int idpedido = 0;
+
+        Connection cnn = null;
+
+        try {
+            cnn = CrearConexion();
+
+            PreparedStatement pst = cnn.prepareStatement(sql2);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                idpedido = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return idpedido;
+
+    }
+
+    public static void altadetallespedidos(int idpedido, int iddisco, int cantidad, double preciounidad) {
         
         Connection cnn = null;
         
-        Discos disco = null;
+        String sql = "INSERT INTO infopedidos (idPedido,iddisco,cantidad,precio) values('"+idpedido+"','"+iddisco+"','"+cantidad+"','"+preciounidad+"')";
         
         try {
             cnn = CrearConexion();
             
             PreparedStatement pst = cnn.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            
-            while (rs.next()) {                
-                disco = new Discos(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getString(6), cantidad);
-        
-            }
+            pst.executeUpdate();
         } catch (Exception e) {
         }
-
-        
-        return disco;
-          
-
     
     }
-    
-    
+
 }

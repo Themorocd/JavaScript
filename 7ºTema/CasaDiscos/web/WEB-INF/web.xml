@@ -8,6 +8,14 @@
         <servlet-name>agregarcesta</servlet-name>
         <servlet-class>controlador.agregarcesta</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>enviodatos</servlet-name>
+        <servlet-class>controlador.enviodatos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>actualizar</servlet-name>
+        <servlet-class>controlador.actualizar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>agregarcesta</servlet-name>
         <url-pattern>/agregarcesta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>enviodatos</servlet-name>
+        <url-pattern>/enviodatos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>actualizar</servlet-name>
+        <url-pattern>/actualizar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
