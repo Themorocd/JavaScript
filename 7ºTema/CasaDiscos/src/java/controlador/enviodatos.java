@@ -32,7 +32,6 @@ public class enviodatos extends HttpServlet {
         HttpSession sesion = request.getSession();
         
         String nombreUsuario =(String) sesion.getAttribute("nombre");
-        String fecha = (String) sesion.getAttribute("fecha");
         double total = (double) sesion.getAttribute("total");
         
         ArrayList<Discos> listacompra;
@@ -76,6 +75,7 @@ public class enviodatos extends HttpServlet {
             
         }
         listacompra.clear();
+        sesion.invalidate();
         getServletContext().getRequestDispatcher("/confirmocompra.jsp").forward(request, response);
         
     }
